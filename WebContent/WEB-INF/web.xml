@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>managementSystem</display-name>
+  
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>com.managementsystem.web.LoginServlet</servlet-class>
+  </servlet>
+  
+   <servlet>
+    <servlet-name>Task</servlet-name>
+    <servlet-class>com.managementsystem.web.TaskServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+    <servlet-name>Employee</servlet-name>
+    <servlet-class>com.managementsystem.web.EmployeeServlet</servlet-class>
+  </servlet>
+  
+   <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/Login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet-mapping>
+    <servlet-name>Task</servlet-name>
+    <url-pattern>/Task</url-pattern>
+  </servlet-mapping>
+  
+   <servlet-mapping>
+    <servlet-name>Employee</servlet-name>
+    <url-pattern>/Employee</url-pattern>
+  </servlet-mapping>
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
