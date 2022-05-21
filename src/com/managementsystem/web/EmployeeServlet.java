@@ -42,11 +42,14 @@ public class EmployeeServlet extends HttpServlet {
 
 		HttpSession session=request.getSession(false);  
         Employee employee =(Employee) session.getAttribute("currentEmployee"); 
-        String id =request.getParameter("id");
         String action = request.getParameter("action");
-		
+        String id =request.getParameter("id");
+        
 		try{
         	switch (action) {
+        	case "all":
+        		listAllEmployee(request, response);
+  				break;
         	case "allDeveloper":
         		listAllDeveloper(request, response);
   				break;
@@ -68,6 +71,9 @@ public class EmployeeServlet extends HttpServlet {
   				break;
   			case "insertTeam":
   				insertTeam(request, response, employee.getEmployeeRule());
+  				break;
+  			case "delete":
+  				delete(request, response,Integer.valueOf(id));
   				break;
   			case "logout":
   				logout(request, response);
@@ -91,6 +97,14 @@ public class EmployeeServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	private void listAllEmployee(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+		List<Employee> listEmployee = EmployeeDao.AllEmployee();
+		request.setAttribute("listEmployee", listEmployee);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("employee/allEmployee.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	
 	private void listAllDeveloper(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		List<Employee> listDeveloper = EmployeeDao.AllDevloper();
 		request.setAttribute("listDeveloper", listDeveloper);
@@ -99,7 +113,8 @@ public class EmployeeServlet extends HttpServlet {
 	}
 	
 	private void listDeveloperTeam(HttpServletRequest request, HttpServletResponse response, int employeeID ,String employeeRule)throws ServletException, IOException {
-		 List<Employee> listDeveloperTeam = EmployeeDao.TeamDevloper(employeeID);	
+		System.out.println(employeeID);
+		List<Employee> listDeveloperTeam = EmployeeDao.TeamDevloper(employeeID);	
 		request.setAttribute("listDeveloperTeam", listDeveloperTeam);
 		request.setAttribute("employeeRule", employeeRule);
 		request.setAttribute("id", employeeID);
@@ -155,6 +170,11 @@ public class EmployeeServlet extends HttpServlet {
 	     EmployeeDao.addTeam(randomNum,request.getParameter("teamName"));
 	     
 	     listTeam(request, response);
+	}
+	
+	private void delete(HttpServletRequest request, HttpServletResponse response,int employeeID)throws ServletException, IOException {
+		EmployeeDao.deleteEmplyee(employeeID);
+		listAllEmployee(request,response);
 	}
 	
 	private void logout(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {

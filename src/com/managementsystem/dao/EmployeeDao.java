@@ -4,23 +4,43 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.managementsystem.constant.Constant.*;
 import com.managementsystem.DBConnection.DBConnection;
 import com.managementsystem.model.Employee;
 import com.managementsystem.model.Team;
 
 public class EmployeeDao {
+	private static Connection connection = DBConnection.getConnection();
+  
+	public static List<Employee> AllEmployee() {
+		List<Employee> employees = new ArrayList<>();
+		try 
+		{ 
+			PreparedStatement preparedStatement = connection
+					  .prepareStatement("select * from employee where employee_rule=? or employee_rule=?");
+			preparedStatement.setString(1, "Developer");
+			preparedStatement.setString(2, "TeamLeader");
+			
+			ResultSet result = preparedStatement.executeQuery();
+			while (result.next()) {
+				Employee employee=setEmployee(result);
+				employees.add(employee);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return employees;
+	}
 	
 	public static List<Employee> AllDevloper() {
 		List<Employee> employees = new ArrayList<>();
 		try 
 		{ 
-			Connection connection = DBConnection.getConnection();
-
 			PreparedStatement preparedStatement = connection
 					  .prepareStatement("select * from employee where employee_rule=?");
 			preparedStatement.setString(1, "Developer");
@@ -41,7 +61,6 @@ public class EmployeeDao {
 		List<Employee> employees = new ArrayList<>();
 		try 
 		{ 
-			Connection connection = DBConnection.getConnection();
 			PreparedStatement preparedStatement1 = connection.prepareStatement("select team_id from team where team_leader_id=? ");
 			preparedStatement1.setInt(1, id);
 			ResultSet result1 = preparedStatement1.executeQuery();
@@ -67,8 +86,6 @@ public class EmployeeDao {
 		String name="";
 		try 
 		{ 
-			Connection connection = DBConnection.getConnection();
-
 			PreparedStatement preparedStatement = connection
 					  .prepareStatement("select first_name,last_name from employee where employee_id =?");
 			preparedStatement.setInt(1, employeeID);
@@ -84,12 +101,29 @@ public class EmployeeDao {
 		return name;
 	}
 	
+	public static String employeeType(int employeeID) {
+		String type="";
+		try 
+		{ 
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("select employee_rule from employee where employee_id =?");
+			preparedStatement.setInt(1, employeeID);	
+			ResultSet result = preparedStatement.executeQuery();
+			
+			while (result.next()) {
+				type=result.getString(EMPLOYEE_RULE);
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return type;
+	}
+	
 	public static List<Team> Team() {
 		List<Team> teams = new ArrayList<>();
 		try
-		{ 
-			Connection connection = DBConnection.getConnection();
-
+		{
 			PreparedStatement preparedStatement1 = connection
 					  .prepareStatement("select * from employee inner join team on employee.employee_id=team.team_leader_id "
 					  + "where employee_rule=?");
@@ -121,9 +155,7 @@ public class EmployeeDao {
 	
 	public static void addEmployee(Employee employee) {
 		try 
-		{ 
-			 Connection connection = DBConnection.getConnection();
-			 
+		{ 			 
 			 PreparedStatement preparedStatement = connection
 					  .prepareStatement("INSERT INTO employee (employee_id,first_name,last_name,address,phone,email,password,employee_rule) VALUES (?,?,?,?,?,?,?,?)");
 			 preparedStatement.setInt(1, employee.getEmployeeID());
@@ -146,9 +178,7 @@ public class EmployeeDao {
 	
 	public static void addEmployeeTeam(int teamID,int developerID) {
 		try 
-		{ 
-			 Connection connection = DBConnection.getConnection();
-	 
+		{ 	 
 			 PreparedStatement preparedStatement2 = connection
 					  .prepareStatement("INSERT INTO employee_team (employee_id,team_id) VALUES (?,?)");
 			 preparedStatement2.setInt(1, developerID);
@@ -165,9 +195,7 @@ public class EmployeeDao {
 		Random random = new Random();
 		int randomNum =  random.nextInt(100000000);
 		try 
-		{ 
-			 Connection connection = DBConnection.getConnection();
-			 
+		{  
 			 PreparedStatement preparedStatement = connection
 					  .prepareStatement("INSERT INTO team (team_id,team_leader_id,team_name) VALUES (?,?,?)");
 			 preparedStatement.setInt(1, randomNum);
@@ -181,17 +209,87 @@ public class EmployeeDao {
 		}		
 	}
 	
-	public static Employee setEmployee(ResultSet result ) throws SQLException{
+	public static void deleteEmplyee(int id) {
+		try 
+		{ 
+			String type=employeeType(id);
+			if(type.equals("Developer")) {
+				deleteDeveloper(id);
+			}
+			else if(type.equals("TeamLeader")) {
+				deleteTeamLeader(id);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+    public static void deleteDeveloper(int id){
+		try
+		{
+			PreparedStatement preparedStatement1 = connection.prepareStatement("delete from task where employee_id=?");
+			preparedStatement1.setInt(1, id);	
+			preparedStatement1.executeUpdate();
+			 
+			PreparedStatement preparedStatement2 = connection.prepareStatement("delete from employee_team where employee_id=?");
+			preparedStatement2.setInt(1, id);
+			preparedStatement2.executeUpdate();
+			 
+			PreparedStatement preparedStatement3 = connection.prepareStatement("delete from employee where employee_id=?");
+			preparedStatement3.setInt(1, id);
+			preparedStatement3.executeUpdate();
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+
+	public static void deleteTeamLeader(int id){
+		try
+		{
+			PreparedStatement preparedStatement1 = connection.prepareStatement("delete from task where employee_id=?");
+			preparedStatement1.setInt(1, id);	
+			preparedStatement1.executeUpdate();
+			 
+			PreparedStatement preparedStatement2 = connection
+					.prepareStatement("select team_id from team where team_leader_id =?");
+			preparedStatement2.setInt(1, id);	
+			ResultSet result = preparedStatement2.executeQuery();
+			int teamID=0;
+			while (result.next()) {
+				teamID=result.getInt("team_id");
+			}
+			PreparedStatement preparedStatement3 = connection.prepareStatement("delete from employee_team where team_id=?");
+			preparedStatement3.setInt(1, teamID);
+			preparedStatement3.executeUpdate();
+			
+			PreparedStatement preparedStatement4 = connection.prepareStatement("delete from team where team_leader_id=?");
+			preparedStatement4.setInt(1, id);
+			preparedStatement4.executeUpdate();
+			 
+			PreparedStatement preparedStatement5 = connection.prepareStatement("delete from employee where employee_id=?");
+			preparedStatement5.setInt(1, id);
+			preparedStatement5.executeUpdate();
+			
+		}catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
+	public static Employee setEmployee(ResultSet result ) throws SQLException {
 		Employee employee=new Employee();
-		employee.setFirstName(result.getString("first_name"));
-		employee.setLastName(result.getString("last_name"));
-		employee.setPhonne(result.getInt("phone"));
-		employee.setaddres(result.getString("address"));
-		employee.setEmployeeID(result.getInt("employee_id"));
-		employee.setEmployeeRule(result.getString("employee_rule"));
-		employee.setEmail(result.getString("email"));
-		employee.setPassword(result.getString("password"));
+		employee.setFirstName(result.getString(FIRST_NAME));
+		employee.setLastName(result.getString(LAST_NAME));
+		employee.setPhonne(result.getInt(PHONE));
+		employee.setaddres(result.getString(ADDRESS));
+		employee.setEmployeeID(result.getInt(EMPLOYEE_ID));
+		employee.setEmployeeRule(result.getString(EMPLOYEE_RULE));
+		employee.setEmail(result.getString(EMAIL));
+		employee.setPassword(result.getString(PASSWORD));
 		
 		return employee;
 	}
+
 }

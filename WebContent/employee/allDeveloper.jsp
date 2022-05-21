@@ -43,6 +43,8 @@
 					 	<td><c:out value="${employee.phone}"/></td>
 					 	<td><c:out value="${employee.addres}"/></td>
 					 	<td style="text-align:center;">
+					 	    <a href="Employee?action=delete&id=<c:out value='${employee.employeeID}'/>">Delete Employee</a>
+							&nbsp;&nbsp;    
 							<a href="Task?action=list&id=<c:out value='${employee.employeeID}'/>">Show</a>
 					 	</td> 
 					</tr>

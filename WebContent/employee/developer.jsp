@@ -39,7 +39,7 @@
 					<th>Phone</th>
 					<th>Address</th>
 					<c:if test="${(employeeRule == 'TeamLeader') || (employeeRule == 'Manager')}">
-						<th>Task Actions</th>
+						<th>Actions</th>
 					</c:if>
 				</tr>
 			</thead>					
@@ -59,7 +59,9 @@
 					 	 </c:if>
 					 	 <c:if test="${(employeeRule == 'Manager')}">
 						 	<td style="text-align:center;"> 
-								<a href="Task?action=list&id=<c:out value='${employee.employeeID}'/>">Show</a>
+						 	    <a href="Employee?action=delete&id=<c:out value='${employee.employeeID}'/>">Delete Employee</a>
+								&nbsp;&nbsp;&nbsp;&nbsp; 
+								<a href="Task?action=list&id=<c:out value='${employee.employeeID}'/>">Show Tasks</a>
 						 	</td>
 					 	 </c:if>
 					</tr>

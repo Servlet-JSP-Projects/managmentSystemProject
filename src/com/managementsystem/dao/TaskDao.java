@@ -1,34 +1,27 @@
 package com.managementsystem.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import javax.servlet.RequestDispatcher;
-
+import static com.managementsystem.constant.Constant.*;
 import com.managementsystem.DBConnection.DBConnection;
 import com.managementsystem.model.Task;
+
 public class TaskDao {
-
+	private static Connection connection = DBConnection.getConnection();
+    
 	public static List<Task> MyTask(int employeeID) {
-
-
 		List<Task> tasks = new ArrayList<>();
-
 		try 
-		{ 
-			 Connection connection = DBConnection.getConnection();
-
+		{
 			 PreparedStatement preparedStatement = connection
-					  .prepareStatement("select * from task where employee_id=?");
+					  .prepareStatement("select * from task where employee_id=? ORDER BY create_date ASC;");
 			preparedStatement.setInt(1, employeeID);
 			
 			ResultSet result = preparedStatement.executeQuery();
@@ -47,20 +40,14 @@ public class TaskDao {
 
 	public static void insertTask(int employeeID,String name,String description) {
 
-		LocalDate date= LocalDate.now();
+		LocalDate date = LocalDate.now();
 		Random random = new Random();
 		int randomNum =  random.nextInt(50000000);
 		System.out.println("System.out.println(randomNum);");
 		System.out.println(employeeID);
 
 		try 
-		{ 
-			 Connection connection = DBConnection.getConnection();
-
-//			 PreparedStatement preparedStatement = connection
-//					  .prepareStatement("insert into task (task_id,name,description,status,create_date,finish_date,employee_id) valuse"
-//					  	   	+ "('"+randomNum+"','"+name+"','"+description+"','In Progress','"+date.toString()+"','-','"+employeeID+"')");
-//			
+		{ 			
 			 PreparedStatement preparedStatement = connection
 					  .prepareStatement("INSERT INTO task (task_id,name,description,status,create_date,finish_date,employee_id) VALUES (?,?,?,?,?,?,?)");
 			 preparedStatement.setInt(1, randomNum);
@@ -81,17 +68,13 @@ public class TaskDao {
 
 	
 	public static List<Task> editTask(int id,int emplyeeID,String text) {
-
 		List<Task> tasks = new ArrayList<>();
-		String date="";
+		String date = "";
 		if(text.equals("Completed")) date=LocalDate.now().toString();
 		else date= "-";
-		
 		try 
 		{ 
-			 Connection connection = DBConnection.getConnection();
-
-			  PreparedStatement preparedStatement = connection
+		      PreparedStatement preparedStatement = connection
 					  .prepareStatement("update task set status=?,finish_date=? where task_id=?");
 			  preparedStatement.setString(1, text);
 			  preparedStatement.setString(2, date.toString());
@@ -109,11 +92,8 @@ public class TaskDao {
 	}
 
 	public static void deleteTask(int id) {
-
 		try 
 		{ 
-			 Connection connection = DBConnection.getConnection();
-
 			 PreparedStatement preparedStatement = connection.prepareStatement("delete from task where task_id=?");
 			 preparedStatement.setInt(1, id);
 		
@@ -127,11 +107,8 @@ public class TaskDao {
 	}
 	
 	public static void deleteCompTask() {
-
 		try 
 		{ 
-			 Connection connection = DBConnection.getConnection();
-
 			 PreparedStatement preparedStatement = connection.prepareStatement("delete from task where status=?");
 			 preparedStatement.setString(1, "Completed");
 		
@@ -144,15 +121,15 @@ public class TaskDao {
 		
 	}
 	
-	public static Task setTask(ResultSet result ) throws SQLException{
+	public static Task setTask(ResultSet result ) throws SQLException {
 		Task task=new Task();
-		task.setName(result.getString("name"));
-		task.setDescription(result.getString("description"));
-		task.setStatus(result.getString("status"));
-		task.setCreateDate(result.getString("create_date"));
-		task.setFinishDate(result.getString("finish_date"));
-		task.setTaskID(result.getInt("task_id"));
-		task.setEmployeeID(result.getInt("employee_id"));
+		task.setName(result.getString(NAME));
+		task.setDescription(result.getString(DESCRIPTION));
+		task.setStatus(result.getString(STATUS));
+		task.setCreateDate(result.getString(CREATE_DATE));
+		task.setFinishDate(result.getString(FINISH_DATE));
+		task.setTaskID(result.getInt(TASK_ID));
+		task.setEmployeeID(result.getInt(EMPLOYEE_ID));
 		return task;
 	}
 }

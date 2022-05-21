@@ -5,22 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.managementsystem.constant.Constant.*;
 import com.managementsystem.DBConnection.DBConnection;
 import com.managementsystem.model.Employee;
 import com.managementsystem.model.Login;
 
 public class LoginDao {
-	
+	 private static Connection connection = DBConnection.getConnection();
 	 static Employee employee=new Employee();
 
 	public static boolean validate(Login login) {
 		boolean isValidate = false;
-		
-
 		try {
-
-			  Connection connection = DBConnection.getConnection();
-
 			  PreparedStatement preparedStatement = connection
 					  .prepareStatement("select * from employee where email = ? and password = ? ");
 			  preparedStatement.setString(1, login.getEmail());
@@ -29,15 +25,14 @@ public class LoginDao {
 		      ResultSet result = preparedStatement.executeQuery();
 		      if(result.next()){
 		    	  isValidate = true;
-	             
-			      employee.setFirstName(result.getString("first_name"));
-			      employee.setLastName(result.getString("last_name"));
-			      employee.setPhonne(result.getInt("phone"));
-			      employee.setaddres(result.getString("address"));
-			      employee.setEmployeeID(result.getInt("employee_id"));
-			      employee.setEmployeeRule(result.getString("employee_rule"));
-			      employee.setEmail(result.getString("email"));
-			      employee.setPassword(result.getString("password"));	  
+			      employee.setFirstName(result.getString(FIRST_NAME));
+			      employee.setLastName(result.getString(LAST_NAME));
+			      employee.setPhonne(result.getInt(PHONE));
+			      employee.setaddres(result.getString(ADDRESS));
+			      employee.setEmployeeID(result.getInt(EMPLOYEE_ID));
+			      employee.setEmployeeRule(result.getString(EMPLOYEE_RULE));
+			      employee.setEmail(result.getString(EMAIL));
+			      employee.setPassword(result.getString(PASSWORD));	  
 		      }
 		     
 

@@ -8,6 +8,7 @@
 			   <div class="dropdown">
 				  <a class="icon">Employee  <i class="fa fa-caret-down icon"></i></a>
 				  <div class="dropdown-content">
+				  	  <a class="active" href="<%=request.getContextPath()%>/Employee?action=all">All</a>
 				      <a class="active" href="<%=request.getContextPath()%>/Employee?action=team">Team</a>
 				      <a class="active" href="<%=request.getContextPath()%>/Employee?action=allDeveloper">Developer</a> 
 			      </div>
