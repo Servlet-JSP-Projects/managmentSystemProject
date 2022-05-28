@@ -1,7 +1,7 @@
 package com.managementsystem.model;
 
 public class Task {
-	
+
 	private String name;
 	private String description;
 	private String status;
@@ -9,61 +9,60 @@ public class Task {
 	private String finishDate;
 	private int taskID;
 	private int employeeID;
-	
-	public String getName(){
+
+	public String getName() {
 		return name;
 	}
-	
-	public void setName(String name){
-	   this.name=name;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public String getDescription(){
+
+	public String getDescription() {
 		return description;
 	}
-	
-	public void setDescription(String description){
-	   this.description=description;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public String getStatus(){
+	public String getStatus() {
 		return status;
 	}
-	
-	public void setStatus(String status){
-	   this.status=status;
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
-	
-	public String getCreateDate(){
+
+	public String getCreateDate() {
 		return createDate;
 	}
-	
-	public void setCreateDate(String createDate){
-	   this.createDate=createDate;
+
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
 	}
-	
-	public String getFinishDate(){
+
+	public String getFinishDate() {
 		return finishDate;
 	}
-	
-	public void setFinishDate(String finishDate){
-	   this.finishDate=finishDate;
+
+	public void setFinishDate(String finishDate) {
+		this.finishDate = finishDate;
 	}
-	
-	public int getTaskID(){
+
+	public int getTaskID() {
 		return taskID;
 	}
-	
-	public void setTaskID(int taskID){
-	   this.taskID=taskID;
+
+	public void setTaskID(int taskID) {
+		this.taskID = taskID;
 	}
-	
-	public int getEmployeeID(){
+
+	public int getEmployeeID() {
 		return employeeID;
 	}
-	
-	public void setEmployeeID(int employeeID){
-	   this.employeeID=employeeID;
+
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
 	}
 }
-

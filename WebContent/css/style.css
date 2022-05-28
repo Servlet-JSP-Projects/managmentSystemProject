@@ -1,308 +1,348 @@
 @CHARSET "windows-1256";
-body{
-  background-color: #f8f8f8;
-  margin:0px;
+
+body {
+	background-color: #f8f8f8;
+	margin: 0px;
 }
-.home{
-  width:96%;
-  display:flex;
-  padding:0.1rem;
+
+.home {
+	width: 96%;
+	display: flex;
+	padding: 0.1rem;
 }
-.home div{
-  width:25%;
-  margin-top:23rem;	
-  margin-left:6rem;	  
+
+.home div {
+	width: 25%;
+	margin-top: 23rem;
+	margin-left: 6rem;
 }
-.home h2{
- margin-bottom:2rem;
+
+.home h2 {
+	margin-bottom: 2rem;
 }
-.home p{
-  text-align: justify;
-  margin-bottom: 2rem;
+
+.home p {
+	text-align: justify;
+	margin-bottom: 2rem;
 }
+
 .home a {
-  background-color: #FE902A;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 5px;
-  width: 3rem;
-  font-weight: bold;  
-  text-decoration: none;
-  padding: 0.6rem 2.5rem;  
+	background-color: #FE902A;
+	color: white;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 5px;
+	width: 3rem;
+	font-weight: bold;
+	text-decoration: none;
+	padding: 0.6rem 2.5rem;
 }
-.loginform{
-  color: #201f1e;
-  margin-left: 2rem;
-  padding: 1rem;
-  width: 90%;
-  height: 84vh;
-  background-color: white;
-  border: none;
-  border-radius: 20px;
-  display: flex;
-  padding-left:4rem;
+
+.loginform {
+	color: #201f1e;
+	margin-left: 2rem;
+	padding: 1rem;
+	width: 90%;
+	height: 84vh;
+	background-color: white;
+	border: none;
+	border-radius: 20px;
+	display: flex;
+	padding-left: 4rem;
 }
-.loginform button{
-  background-color: #FE902A;
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  text-align: center;
-  width: 8rem;
-  font-weight: bold;  
-  padding: 0.7rem 1.5rem 
+
+.loginform button {
+	background-color: #FE902A;
+	color: white;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+	text-align: center;
+	width: 8rem;
+	font-weight: bold;
+	padding: 0.7rem 1.5rem
 }
+
 .logininput {
-  margin-top: 10rem;
-  margin-left:3rem;
-  width:20rem;  
+	margin-top: 10rem;
+	margin-left: 3rem;
+	width: 20rem;
 }
+
 .logininput h2 {
-  width:25rem;	
-  margin-bottom: 8rem;	
-  color: #201f1e;
-  font-size: 1.4rem; 
-}
-.inputcontainer{
-  disply: flex;
-  padding:0.1rem 0.5rem;
-  margin-bottom:1rem;
-  width: 90%;
-  border: 1px solid #cccdcd;
-  border-radius: 5px;
-}
-i{
-  color: #201f1e;
-  font-size: 0.5rem
-}
-.active{
-	  background-color: none;
-	
-}
-input ,textarea,select{
-  font: inherit;
-  display: inline-block;
-  width: 85%;
-  border: none;
-  background: white;
-  padding: 0.5rem;
-  font-size: 1rem;
-  resize:none;
-}
-input,textarea,select:focus {
-    outline:none;
-}
-h3{
-  margin-top: 3rem;	
-  margin-bottom: 2.5rem;
-  margin-left: 3rem;		
-}
-table{
-  margin-top: 1rem;	
-  margin-left: 3rem;	
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 63%;
-}
-table a{
-  color:black;
-  font-weight:510;
-  text-decoration: none;
-  color: #585857;
-}
-table a :hover{
-    background-color: white;
-}
-td,th {
-  border: 1px solid #ddd;
-  padding: 8px;
+	width: 25rem;
+	margin-bottom: 8rem;
+	color: #201f1e;
+	font-size: 1.4rem;
 }
 
-tr:nth-child(even){background-color: #f2f2f2;}
+.inputcontainer {
+	disply: flex;
+	padding: 0.1rem 0.5rem;
+	margin-bottom: 1rem;
+	width: 90%;
+	border: 1px solid #cccdcd;
+	border-radius: 5px;
+}
 
-tr:hover {background-color: #ddd;}
+i {
+	color: #201f1e;
+	font-size: 0.5rem
+}
+
+input, textarea, select {
+	font: inherit;
+	display: inline-block;
+	width: 85%;
+	border: none;
+	background: white;
+	padding: 0.5rem;
+	font-size: 1rem;
+	resize: none;
+}
+
+input, textarea, select:focus {
+	outline: none;
+}
+
+h3 {
+	margin-top: 3rem;
+	margin-bottom: 2.5rem;
+	margin-left: 3rem;
+}
+
+table {
+	margin-top: 1rem;
+	margin-left: 3rem;
+	font-family: Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 63%;
+}
+
+table a {
+	color: black;
+	font-weight: 510;
+	text-decoration: none;
+	color: #585857;
+}
+
+table a :hover {
+	background-color: white;
+}
+
+td, th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr:hover {
+	background-color: #ddd;
+}
 
 th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #FC9533;
-  color: white;
-}
-header {
-  background: white;
-  color: black;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 3rem;
-}
-header a {
-  color: black;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin-left: 0.5rem;
-  font-size: 1rem;
-  font-weight: 400;
-  cursor: pointer;
-  display: inline-block;
-  border-radius: 20px; 
-}
-header div{
-  padding-top:20px;
-  padding-bottom:20px;	 	  
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #FC9533;
+	color: white;
 }
 
-.dropdown{
- display: inline-block;	
- margin:0px;
- padding:0px;
- width:8rem;  
+header {
+	background: white;
+	color: black;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 3rem;
+}
+
+header a {
+	color: black;
+	text-decoration: none;
+	padding: 0.5rem 1rem;
+	margin-left: 0.5rem;
+	font-size: 1rem;
+	font-weight: 400;
+	cursor: pointer;
+	display: inline-block;
+	border-radius: 20px;
+}
+
+header div {
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.dropdown {
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+	width: 8rem;
 }
 
 .dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  right:3rem;
-  padding:0px;
-  width: 300px;
-  z-index: 1;
-  box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.2);
+	display: none;
+	position: absolute;
+	background-color: white;
+	right: 3rem;
+	padding: 0px;
+	width: 300px;
+	z-index: 1;
+	box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-content p{
-  margin:1rem;
-  color: black;
-  hight:2rem;
-  disply:inlone-block;
-  background-color: white;
-  font-size: 0.9rem;
-  
-}
-.dropdown-content a{
-  display: block;
-  color: black;
-  badding:0px;
-  margin:0px;
-  border-radius: 0px;
-  
+.dropdown-content p {
+	margin: 1rem;
+	color: black;
+	hight: 2rem;
+	disply: inlone-block;
+	background-color: white;
+	font-size: 0.9rem;
 }
 
-.dropdown-content a:hover {background-color: #ffbd47}
+.dropdown-content a {
+	display: block;
+	color: black;
+	badding: 0px;
+	margin: 0px;
+	border-radius: 0px;
+}
+
+.dropdown-content a:hover {
+	background-color: #ffbd47
+}
 
 .dropdown:hover .dropdown-content {
-  display: block;
+	display: block;
 }
 
 header a:hover {
-  background-color: #ffbd47;
-  color: white;
+	background-color: #ffbd47;
+	color: white;
 }
-a i{
-	margin-left:0.4rem;
+
+a i {
+	margin-left: 0.4rem;
 }
-a :hover i{
-    background-color: blue;
+
+.btn {
+	background-color: #FE902A;
+	color: white;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 10px;
+	width: 3rem;
+	font-weight: bold;
+	margin-left: 3rem;
+	text-decoration: none;
+	padding: 0.5rem 1rem;
 }
-.btn{
-  background-color: #FE902A;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 10px;
-  width: 3rem;
-  font-weight: bold;  
-  margin-left: 3rem;  
-  text-decoration: none;
-  padding: 0.5rem 1rem;  	
+
+.addTask {
+	width: 350px;
+	height: 405px;
+	border: 1px solid #cccdcd;
+	border-radius: 20px;
+	margin: auto;
+	padding: 1.5rem;
+	margin-top: 6.5rem;
+	background-color: white;
 }
-.addTask{
-  width:350px;
-  height:405px;
-  border: 1px solid #cccdcd;
-  border-radius: 20px;
-  margin:auto;
-  padding:1.5rem;
-  margin-top:6.5rem;
-  background-color: white;
+
+.addTask input, textarea, select, .addEmplyee input, textarea, select,
+	.addTeam input, textarea, select {
+	margin-top: 0.5rem;
+	margin-bottom: 1rem;
+	width: 96%;
+	border: 1px solid #cccdcd;
+	border-radius: 5px;
 }
-.addTask input,textarea,select,.addEmplyee input,textarea,select{
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-  width: 96%;
-  border: 1px solid #cccdcd;
-  border-radius: 5px; 
+
+select {
+	width: 100%;
 }
-select{
-  width: 100%;	
+
+.addTask textarea {
+	height: 5rem;
 }
-.addTask textarea{
-    height: 5rem;
-}
-.addTask h3 ,.addEmplyee h3{
-	margin:0;
-	text-align:center;
-	margin-bottom:3rem;
+
+.addTask h3, .addEmplyee h3, .addTeam h3 {
+	margin: 0;
+	text-align: center;
+	margin-bottom: 3rem;
 	color: #201f1e;
 }
-.addTask button{
-  width: 100%;
-  margin-top:5rem;
-  font-size:0.9rem;
-  background-color: #FE902A;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 5px;
-  font-weight: bold;
-  padding:0.5rem;
+
+.addTask button {
+	width: 100%;
+	margin-top: 5rem;
+	font-size: 0.9rem;
+	background-color: #FE902A;
+	color: white;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 0.5rem;
 }
-.addEmplyee{
-  width:350px;
-  height:540px;	
-  border: 1px solid #cccdcd;
-  border-radius: 20px;
-  margin:auto;
-  margin-top:2.8rem;
-  padding: 1.5rem;
-  background-color: white;
+
+.addEmplyee, .addTeam {
+	width: 350px;
+	height: 483px;
+	border: 1px solid #cccdcd;
+	border-radius: 20px;
+	margin: auto;
+	margin-top: 4.5rem;
+	padding: 1.5rem;
+	background-color: white;
 }
-.addEmplyee button{
-  width: 100%;
-  margin-top:2.5rem;
-  font-size:0.9rem;
-  background-color: #FE902A;
-  color: white;
-  border: none;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 5px;
-  font-weight: bold;
-  padding:0.5rem;	
+
+.addEmplyee button, .addTeam button {
+	width: 100%;
+	margin-top: 2.5rem;
+	font-size: 0.9rem;
+	background-color: #FE902A;
+	color: white;
+	border: none;
+	cursor: pointer;
+	text-align: center;
+	border-radius: 5px;
+	font-weight: bold;
+	padding: 0.5rem;
 }
-.row{
-  display: flex;
-  justify-content: space-between;
-  width:200px;
-  padding:0;
+
+.addTeam {
+	height: 540px;
+	margin-top: 2.8rem;
 }
-.row div{
-  padding:0;
-  width:45%;
+
+.row {
+	display: flex;
+	justify-content: space-between;
+	width: 200px;
+	padding: 0;
 }
-.name{
-  display: flex;
-  justify-content: space-between;
-  width:97%;
-  padding:0;
+
+.row div {
+	padding: 0;
+	width: 45%;
 }
-.name div{
-  padding:0;
-  width:45%;
+
+.name {
+	display: flex;
+	justify-content: space-between;
+	width: 97%;
+	padding: 0;
+}
+
+.name div {
+	padding: 0;
+	width: 45%;
 }
